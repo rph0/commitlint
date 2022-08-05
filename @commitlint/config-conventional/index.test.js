@@ -7,33 +7,33 @@ const commitLint = async (message) => {
 };
 
 const messages = {
-	invalidTypeEnum: 'foo: some message',
-	invalidTypeCase: 'FIX: some message',
-	invalidTypeEmpty: ': some message',
+	invalidTypeEnum: 'foo: alguma mensagem',
+	invalidTypeCase: 'FIX: alguma mensagem',
+	invalidTypeEmpty: ': alguma mensagem',
 	invalidSubjectCases: [
-		'fix(scope): Some message',
-		'fix(scope): Some Message',
-		'fix(scope): SomeMessage',
-		'fix(scope): SOMEMESSAGE',
+		'fix(scope): Alguma mensagem',
+		'fix(scope): Alguma Mensagem',
+		'fix(scope): AlgumaMensagem',
+		'fix(scope): ALGUMAMENSAGEM',
 	],
 	invalidSubjectEmpty: 'fix:',
-	invalidSubjectFullStop: 'fix: some message.',
+	invalidSubjectFullStop: 'fix: alguma mensagem.',
 	invalidHeaderMaxLength:
-		'fix: some message that is way too long and breaks the line max-length by several characters since the max is 100',
+		'fix: alguma mensagem muito grande que quebra a regra do máximo de caracteres, o máximo de caracteres é 100',
 	warningFooterLeadingBlank:
-		'fix: some message\n\nbody\nBREAKING CHANGE: It will be significant',
+		'fix: alguma mensagem\n\nbody\nBREAKING CHANGE: mudança significante!',
 	invalidFooterMaxLineLength:
-		'fix: some message\n\nbody\n\nBREAKING CHANGE: footer with multiple lines\nhas a message that is way too long and will break the line rule "line-max-length" by several characters',
-	warningBodyLeadingBlank: 'fix: some message\nbody',
+		'fix: alguma mensagem\n\nbody\n\nBREAKING CHANGE: rodapé com multiplas linhas\nalguma mensagem muito grande que quebra a regra do máximo de caracteres, o máximo de caracteres é 100',
+	warningBodyLeadingBlank: 'fix: alguma mensagem\nbody',
 	invalidBodyMaxLineLength:
-		'fix: some message\n\nbody with multiple lines\nhas a message that is way too long and will break the line rule "line-max-length" by several characters',
+		'fix: alguma mensagem\n\nbody com multiplas linhas\nguma mensagem muito grande que quebra a regra do máximo de caracteres, o máximo de caracteres é 100',
 	validMessages: [
-		'fix: some message',
-		'fix(scope): some message',
-		'fix(scope): some Message',
-		'fix(scope): some message\n\nBREAKING CHANGE: it will be significant!',
-		'fix(scope): some message\n\nbody',
-		'fix(scope)!: some message\n\nbody',
+		'fix: alguma mensagem',
+		'fix(escopo): alguma mensagem',
+		'fix(escopo): alguma Mensagem',
+		'fix(escopo): alguma mensagem\n\nBREAKING CHANGE: mudança significante!',
+		'fix(escopo): alguma mensagem\n\nbody',
+		'fix(escopo)!: alguma mensagem\n\nbody',
 	],
 };
 
@@ -41,32 +41,32 @@ const errors = {
 	typeEnum: {
 		level: 2,
 		message:
-			'type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test]',
+			'tipo deve ser um dos [docs, feat, fix, perf, refactor, style]',
 		name: 'type-enum',
 		valid: false,
 	},
 	typeCase: {
 		level: 2,
-		message: 'type must be lower-case',
+		message: 'tipo deve ser lower-case',
 		name: 'type-case',
 		valid: false,
 	},
 	typeEmpty: {
 		level: 2,
-		message: 'type may not be empty',
+		message: 'tipo não pode ser vazio',
 		name: 'type-empty',
 		valid: false,
 	},
 	subjectCase: {
 		level: 2,
 		message:
-			'subject must not be sentence-case, start-case, pascal-case, upper-case',
+			'descrição não pode ser sentence-case, start-case, pascal-case, upper-case',
 		name: 'subject-case',
 		valid: false,
 	},
 	subjectEmpty: {
 		level: 2,
-		message: 'subject may not be empty',
+		message: 'descrição não pode ser vazia',
 		name: 'subject-empty',
 		valid: false,
 	},
@@ -79,19 +79,19 @@ const errors = {
 	headerMaxLength: {
 		level: 2,
 		message:
-			'header must not be longer than 100 characters, current length is 112',
+			'cabeçalho não pode ter mais de 100 caracteres',
 		name: 'header-max-length',
 		valid: false,
 	},
 	footerMaxLineLength: {
 		level: 2,
-		message: "footer's lines must not be longer than 100 characters",
+		message: "linhas do rodapé não podem ter mais de 100 caracteres",
 		name: 'footer-max-line-length',
 		valid: false,
 	},
 	bodyMaxLineLength: {
 		level: 2,
-		message: "body's lines must not be longer than 100 characters",
+		message: "linhas do corpo da mensagem não podem ter mais de 100 caracteres",
 		name: 'body-max-line-length',
 		valid: false,
 	},
@@ -100,13 +100,13 @@ const errors = {
 const warnings = {
 	footerLeadingBlank: {
 		level: 1,
-		message: 'footer must have leading blank line',
+		message: 'cabeçalho deve ter uma linha em branco antes',
 		name: 'footer-leading-blank',
 		valid: false,
 	},
 	bodyLeadingBlank: {
 		level: 1,
-		message: 'body must have leading blank line',
+		message: 'corpo da mensagem deve ter uma linha em branco antes',
 		name: 'body-leading-blank',
 		valid: false,
 	},
